@@ -29,7 +29,7 @@ export default function Home() {
               </div>
               <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
-                <Field name="password" id="password" type="password" className="form-control" id="exampleFormControlTextarea1" rows="3" />        
+                <Field name="password" id="password" type="password" className="form-control" />        
               </div>
               <div className="d-flex flex-row-reverse">
                 <button type="submit" className='btn btn-secondary'>Log In</button>
