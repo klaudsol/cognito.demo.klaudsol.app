@@ -23,14 +23,14 @@ async function get(req, res) {
 
   const config = {
     credentials: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_ACCESS_SECRET 
+      accessKeyId: process.env.MY_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.MY_AWS_ACCESS_SECRET 
     },
-    region: process.env.AWS_REGION,
+    region: process.env.MY_AWS_REGION,
   }
   const client = new CognitoIdentityProviderClient(config);
   const input = {
-    UserPoolId: process.env.AWS_USER_POOL_ID
+    UserPoolId: process.env.MY_AWS_USER_POOL_ID
   };
   const command = new ListUsersCommand(input);
   const response = await client.send(command);
