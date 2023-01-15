@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import Router from 'next/router';
 import { Formik, Field, Form } from "formik";
 import styles from '../styles/Home.module.css'
 
@@ -8,6 +8,7 @@ export default function Home() {
   const handleSubmit = async (values) => {
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.log(JSON.stringify(values, null, 2));
+    Router.push('/dashboard');
   };
 
   return (
