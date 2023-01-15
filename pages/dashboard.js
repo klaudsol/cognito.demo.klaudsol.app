@@ -18,17 +18,9 @@ export default function Dashboard() {
     (async () => {
       const responseRaw = await fetch('/api/users');
       const response = await responseRaw.json();
-      //console.log(response);
       setUsers(response);
-      console.log(attributesHash);
     })();
   }, []);
-
-
-  useEffect(() => {
-      console.log('panget');
-      console.log(attributesHash);
-  }, [users]);
 
   return (
     <div className={styles.container}>
