@@ -6,8 +6,6 @@ async function handler(req, res) {
   
   try {
     switch(req.method) {
-      //case "GET":
-      //  return get(req, res); 
       case "POST":
         return create(req, res);
       default:
@@ -41,7 +39,6 @@ async function create(req, res) {
     };
     const command = new InitiateAuthCommand(input);
     const response = await client.send(command);
-    console.log(response);
     res.status(200).json({message: response.AuthenticationResult.IdToken});
   } catch (error) {
     if (error.name === 'NotAuthorizedException') {
