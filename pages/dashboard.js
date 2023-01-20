@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 import { useState, useEffect, useMemo } from 'react';
 
@@ -30,6 +31,7 @@ export default function Dashboard() {
 
       <main className={styles.main}>
         <div className='border rounded p-3'>
+          <Link href="/" className='btn btn-primary'>Logout</Link>
           <table className='table table-striped'>
             <thead>
               <tr>

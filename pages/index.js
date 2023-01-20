@@ -1,9 +1,13 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import { Formik, Field, Form } from "formik";
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
+import { useState } from 'react';
 
 export default function Home() {
+
+  const [errorMessage, setErrorMessage] = useState();
+  const [isVerified, setVerified] = useState(false);
 
   const handleSubmit = async (values) => {
     const { username, password } = values;
@@ -20,6 +24,8 @@ export default function Home() {
     const responseBody = await response.json();
     if (response.status >= 200 && response.status <= 299) {
       Router.push('/dashboard');
+    } else {
+      setErrorMessage(responseBody.message);  
     }
   };
 
@@ -32,6 +38,16 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className="border rounded p-3">
+          {errorMessage && (
+            <div class="alert alert-danger" role="alert">
+              {errorMessage}
+            </div>
+          )}
+          {isVerified && (
+            <div class="alert alert-success" role="alert">
+              Welcome back! Please wait...
+            </div>
+          )}
           <Formik
             initialValues={{ name: "", password: "" }}
             onSubmit={handleSubmit}
