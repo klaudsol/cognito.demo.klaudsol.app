@@ -6,10 +6,23 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
 
   const handleSubmit = async (values) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.log(JSON.stringify(values, null, 2));
-    Router.push('/dashboard');
+    const { username, password } = values;
+    const response = await fetch('/api/sessions', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        username, password
+      })
+    });
+
+    const responseBody = await response.json();
+    if (response.status >= 200 && response.status <= 299) {
+      Router.push('/dashboard');
+    }
   };
+
 
   return (
     <div className={styles.container}>
@@ -25,8 +38,8 @@ export default function Home() {
           >
             <Form>
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">Username</label>
-                <Field name="name" id="name" type="text" className="form-control" />
+                <label htmlFor="username" className="form-label">Username</label>
+                <Field name="username" id="username" type="text" className="form-control" />
               </div>
               <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
